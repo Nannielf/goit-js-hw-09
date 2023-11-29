@@ -25,7 +25,7 @@ function onFormSubmit(e) {
   const inputStep = Number(step.value);
 
   for (let i = 1; i <= inputAmount; i+=1) {
-    inputDelay += inputStep;
+    
     createPromise(i, inputDelay)
     .then(({ position, delay }) => {
       Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
@@ -33,6 +33,7 @@ function onFormSubmit(e) {
     .catch(({ position, delay }) => {
       Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
     });
+    inputDelay += inputStep;
   }
   e.currentTarget.reset();
 }
